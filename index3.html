@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Sathwika ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:black;
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* star background */
+
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image:radial-gradient(white 1px, transparent 1px);
+background-size:40px 40px;
+opacity:0.3;
+animation:stars 60s linear infinite;
+z-index:0;
+}
+
+@keyframes stars{
+from{transform:translateY(0);}
+to{transform:translateY(-2000px);}
+}
+
+/* intro screen */
+
+#introScreen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:2000;
+font-size:28px;
+padding:20px;
+text-align:center;
+}
+
+/* hero section with cinematic zoom */
+
+.hero{
+height:100vh;
+background:url("photo1.jpeg.jpeg") center 45%/cover no-repeat;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+animation:zoomBackground 20s ease-in-out infinite alternate;
+}
+
+@keyframes zoomBackground{
+
+0%{
+background-size:100%;
+background-position:center 45%;
+}
+
+100%{
+background-size:100%;
+background-position:center 40%;
+}
+
+}
+
+/* mobile image adjustment */
+
+@media (max-width:768px){
+.hero{
+background-position:center 45%;
+}
+}
+
+.hero::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.55);
+}
+
+.content{
+position:relative;
+z-index:2;
+padding:20px;
+}
+
+/* title glow */
+
+h1{
+font-size:40px;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{ text-shadow:0 0 10px pink;}
+to{ text-shadow:0 0 30px red;}
+}
+
+p{
+font-size:18px;
+margin-top:10px;
+}
+
+/* buttons */
+
+button{
+margin-top:15px;
+padding:12px 30px;
+font-size:16px;
+border:none;
+border-radius:25px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+}
+
+/* floating hearts */
+
+.heart{
+position:fixed;
+top:-10px;
+font-size:20px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
+}
+
+/* popup box */
+
+.popup{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+color:#ff4d6d;
+padding:25px;
+border-radius:15px;
+width:320px;
+z-index:999;
+box-shadow:0 10px 30px rgba(0,0,0,0.7);
+}
+
+.closeBtn{
+background:#ff4d6d;
+color:white;
+border:none;
+padding:8px 20px;
+border-radius:20px;
+margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- intro -->
+
+<div id="introScreen">
+<h1 id="typing"></h1>
+</div>
+
+<!-- hero section -->
+
+<div class="hero">
+
+<div class="content">
+
+<h1>Happy Birthday Sathwika ❤️</h1>
+
+<p>A beautiful soul deserves the most beautiful day.</p>
+
+<p>With love, Sravan 💖</p>
+
+<button onclick="playMusic()">Play Surprise 🎵</button>
+
+<br>
+
+<button onclick="showSecret()">Open Secret Message 💌</button>
+
+</div>
+
+</div>
+
+<!-- secret message -->
+
+<div id="secretBox" class="popup">
+
+<h2>For Sathwika ❤️</h2>
+
+<p>
+
+From the moment you came into my life,
+everything became brighter.
+
+Your smile makes my world happier.
+
+You are someone truly special,
+and I feel lucky to know you.
+
+Happy Birthday once again ❤️
+
+— Sravan
+
+</p>
+
+<button onclick="continueLove()">Continue ❤️</button>
+
+<br>
+
+<button class="closeBtn" onclick="closeSecret()">Close</button>
+
+</div>
+
+<!-- love question -->
+
+<div id="loveQuestion" class="popup">
+
+<h2>Will you always stay in my life? ❤️</h2>
+
+<button onclick="loveAnswer()">YES ❤️</button>
+
+<button onclick="loveAnswer()">ALWAYS ❤️</button>
+
+<br>
+
+<!-- <button class="closeBtn" onclick="closeLove()">Close</button> -->
+
+</div>
+
+<!-- final message -->
+
+<div id="finalMessage" class="popup">
+
+<h2>❤️</h2>
+
+<p>
+
+You just made Sravan the happiest person ❤️
+
+No matter where life takes us,
+I hope your smile always stays the same.
+
+Happy Birthday once again Sathwika ✨
+
+</p>
+
+<button class="closeBtn" onclick="closeFinal()">Close</button>
+
+</div>
+
+<audio id="music">
+<source src="song.mp3.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* typing intro */
+
+var text="Sravan ❤️ Sathwika\n\nSome people enter our life\nand make everything beautiful...";
+var i=0;
+
+function typeWriter(){
+
+if(i<text.length){
+
+document.getElementById("typing").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(typeWriter,60);
+
+}else{
+
+setTimeout(startMain,1500);
+
+}
+
+}
+
+function startMain(){
+document.getElementById("introScreen").style.display="none";
+}
+
+window.onload=typeWriter;
+
+/* music */
+
+function playMusic(){
+document.getElementById("music").play();
+}
+
+/* floating hearts */
+
+function createHeart(){
+
+var heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.animationDuration=(Math.random()*3+2)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove();},5000);
+
+}
+
+setInterval(createHeart,300);
+
+/* secret popup */
+
+function showSecret(){
+document.getElementById("secretBox").style.display="block";
+}
+
+function closeSecret(){
+document.getElementById("secretBox").style.display="none";
+}
+
+function continueLove(){
+
+document.getElementById("secretBox").style.display="none";
+
+document.getElementById("loveQuestion").style.display="block";
+
+}
+
+/* love popup */
+
+function closeLove(){
+document.getElementById("loveQuestion").style.display="none";
+}
+
+/* heart explosion */
+
+function loveAnswer(){
+
+document.getElementById("loveQuestion").style.display="none";
+
+for(let i=0;i<70;i++){
+
+let heart=document.createElement("div");
+
+heart.innerHTML="💖";
+
+heart.style.position="fixed";
+heart.style.left="50%";
+heart.style.top="50%";
+heart.style.fontSize="26px";
+heart.style.zIndex="2000";
+
+document.body.appendChild(heart);
+
+let x=(Math.random()-0.5)*1000;
+let y=(Math.random()-0.5)*1000;
+
+heart.animate([
+{transform:"translate(-50%,-50%)"},
+{transform:`translate(${x}px,${y}px)`}
+],{duration:1500});
+
+setTimeout(()=>heart.remove(),1500);
+
+}
+
+setTimeout(()=>{
+document.getElementById("finalMessage").style.display="block";
+},1200);
+
+}
+
+function closeFinal(){
+document.getElementById("finalMessage").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
